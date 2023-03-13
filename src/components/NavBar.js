@@ -107,7 +107,6 @@ function NavBar() {
                     </Box>
                     <Box
                         variant="h5"
-                        noWrap
                         component="a"
                         href=""
                         sx={{
