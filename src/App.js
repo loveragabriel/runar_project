@@ -6,11 +6,13 @@ import { Novedades } from './pages/Novedades';
 import { Ofertas } from './pages/Ofertas';
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/runar'>
+      <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/Products' element={<Products/>} />
       <Route path='/Novedades' element={<Novedades/>} />
       <Route path='/Ofertas' element={<Ofertas/>} />
+      </Routes>
     </BrowserRouter>
   );
 }
