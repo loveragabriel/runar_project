@@ -15,9 +15,11 @@ import { IconWhite } from './IconWhite';
 import { Badge } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 
-const pages = ['Productos', 'Novedades', 'Ofertas'];
+
+const pages = ['Products', 'Novedades', 'Ofertas'];
 const settings = ['Perfil', 'Cuenta', 'Dashboard', 'Salir'];
 
 function NavBar() {
@@ -54,18 +56,11 @@ function NavBar() {
         <AppBar position="fixed" color='primary'>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box
-                        variant="h1"
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                        }}
-                    >
-                        <IconWhite />
-
-                    </Box>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+  <Box variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+    <IconWhite />
+  </Box>
+</Link>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -123,15 +118,16 @@ function NavBar() {
                         <IconWhite />
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
+                    {pages.map((page) => (
+  <Link to={`/${page.toLowerCase()}`} key={page} style={{ textDecoration: 'none' }}>
+    <Button
+      onClick={handleCloseNavMenu}
+      sx={{ my: 2, color: 'white', display: 'block' }}
+    >
+      {page}
+    </Button>
+  </Link>
+))}
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
