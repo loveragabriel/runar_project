@@ -7,15 +7,10 @@ import { Ofertas } from './pages/Ofertas';
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/Products' element={<Products/>} />
       <Route path='/Novedades' element={<Novedades/>} />
       <Route path='/Ofertas' element={<Ofertas/>} />
-
-
-
-      </Routes>
     </BrowserRouter>
   );
 }
