@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const pages = ['Products', 'Novedades', 'Ofertas'];
+const pages = ['Productos', 'Novedades', 'Ofertas'];
 const settings = ['Perfil', 'Cuenta', 'Dashboard', 'Salir'];
 
 function NavBar() {
