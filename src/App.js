@@ -19,7 +19,6 @@ function App() {
       <Route path='/Ofertas' element={<Ofertas/>} />
       <Route path='/ItemDetailContainer/:indexItem' element={<ItemDetailContainer/>} />
       <Route path='/CategoryContainer/:itemCategory' element={<CategoryContainer/>} />
-
       <Route path='/*' element={<Error404/>}/>
       </Routes>
     </BrowserRouter>
