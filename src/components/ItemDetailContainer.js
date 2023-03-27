@@ -2,7 +2,7 @@ import products from '../modules/lists';
 import React, { useState, useEffect } from 'react';
 import { Paper, Typography, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
-
+import { ItemCount } from './ItemCount';
 
 const hoverCard = {
     padding: '1em',
@@ -14,44 +14,36 @@ const hoverCard = {
     }
 };
 
-function getSingleItem(indexItem) {
-    const promesa = new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(products[indexItem])
-        }, 1000)
-    })
-    return promesa;
-}
+function getItemsById(id) {
+    const promise = new Promise((resolve) => {
+      setTimeout(() => {
+        const results = products.filter((product) => product.id === id);
+        resolve(results);
+      }, 1000);
+    });
+  
+    return promise;
+  }
 
-
-export const ItemDetailContainer = (props) => {
-    const [product, setProduct] = useState([]);
-    let { indexItem } = useParams();
-    console.log(indexItem)
-
-
+export const ItemDetailContainer = () => {
+    const [product, setProduct] = useState({});
+    let { idItem } = useParams();
 
     useEffect(() => {
-        getSingleItem(indexItem).then((respuesta) => setProduct(respuesta))
-
-        return () => {
-            // optional cleanup function here
-        }
-    }, [indexItem])
-
+        getItemsById(idItem).then((results) => setProduct(results));
+    }, [idItem]);
 
     return (
         <div>
-            {/* <Banner src='https://kinsta.altitude-sports.com/wp-content/uploads/2020/06/Blog-Banner-C.jpg'/> */}
             <Paper elevation={5} sx={hoverCard}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Typography variant='h5'>{product.title}</Typography>
                 </Box>
                 <img src={product.img} alt='img' style={{ width: '250px' }} />
-                <Typography variant='h6'>{product.description}</Typography>
+                <Typography variant='h6'>{product['description']}</Typography>
                 <Typography variant='h6'>{product.category}</Typography>
-                <Typography variant='h6'>{product.price}</Typography>
-                {props.children}
+                <Typography variant='h6'>$ {product.price}</Typography>
+                <ItemCount></ItemCount>
             </Paper>
         </div>
     )

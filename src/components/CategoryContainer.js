@@ -54,7 +54,7 @@ export const CategoryContainer = (props) => {
             ) : (
                 product.map((product, index) => {
                     return  (
-                        <Paper key={index} elevation={5} sx={hoverCard}> 
+                        <Paper key={index}  id={product.id} elevation={5} sx={hoverCard}> 
                           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Typography variant='h5'>{product.title}</Typography>
                             <IconButton >
@@ -66,7 +66,7 @@ export const CategoryContainer = (props) => {
                           <Typography variant='h6'>{product.category}</Typography>
                           </Link>
                           <Typography variant='h6'>{product.price}</Typography>
-                          <Link to={`/ItemDetailContainer/${index}`}>
+                          <Link to={`/ItemDetailContainer/${product.id}`}>
                           <BtnComponent >Detalle</BtnComponent>
                           </Link>
                           {props.children}

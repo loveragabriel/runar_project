@@ -7,16 +7,13 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar'; Disable
 import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip'; Disable
 import MenuItem from '@mui/material/MenuItem';
 import { IconWhite } from './IconWhite';
 import { Badge } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-
 
 const linkStyle = {
     textDecoration: 'none',
@@ -27,7 +24,7 @@ const linkStyle = {
     },
 };
 
-const pages = ['Productos', 'Novedades', 'Ofertas'];
+const pages = ['Catalogo', 'Novedades', 'Ofertas'];
 const settings = ['Perfil', 'Cuenta', 'Dashboard', 'Salir'];
 
 function NavBar() {
@@ -124,8 +121,11 @@ function NavBar() {
                                 color: 'inherit',
                                 textDecoration: 'none',
                             }}
-                        >
-                            <IconWhite />
+                        >   
+                         <Link to="/" style={{ textDecoration: 'none' }}>
+                                <IconWhite />
+                         </Link>
+
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (

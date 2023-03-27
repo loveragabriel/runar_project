@@ -7,7 +7,6 @@ export const Ofertas = () => {
     <div>
         <NavBar></NavBar>
         <Typography sx={{margin:'20vh'}}>Próximamente</Typography>
-
     </div>
   )
 }
