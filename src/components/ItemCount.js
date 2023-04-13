@@ -23,7 +23,6 @@ export const ItemCount = (props) => {
       <BtnComponent onClick={removeProduct}>-</BtnComponent>
       <BtnComponent color='orange'>{count}</BtnComponent>
       <BtnComponent onClick={addProduct}>+</BtnComponent>
-
     </div>
   )
 }

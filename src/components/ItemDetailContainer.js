@@ -4,6 +4,7 @@ import { Paper, Typography, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 import { CircularProgress } from '@mui/material';
+import { BtnComponent } from './BtnComponent';
 
 
 const hoverCard = {
@@ -53,9 +54,10 @@ export const ItemDetailContainer = () => {
                 </Box>
                 <img src={product.img} alt='img' style={{ width: '250px' }} />
                 <Typography variant='h6'>{product.description}</Typography>
-                <Typography variant='h6'>{product.category}</Typography>
+                <Typography variant='p'>{product.category}</Typography>
                 <Typography variant='h6'>$ {product.price}</Typography>
                 <ItemCount></ItemCount>
+                <BtnComponent>Agregar</BtnComponent>
             </Paper>
             }
         </div>

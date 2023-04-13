@@ -14,6 +14,7 @@ import { Badge } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { CartWidget } from './CartWidget';
 
 const linkStyle = {
     textDecoration: 'none',
@@ -121,10 +122,10 @@ function NavBar() {
                                 color: 'inherit',
                                 textDecoration: 'none',
                             }}
-                        >   
-                         <Link to="/" style={{ textDecoration: 'none' }}>
+                        >
+                            <Link to="/" style={{ textDecoration: 'none' }}>
                                 <IconWhite />
-                         </Link>
+                            </Link>
 
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -142,11 +143,7 @@ function NavBar() {
 
                         <Box sx={{ flexGrow: 0 }}>
 
-                            <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleShippingCart}>
-                                <Badge badgeContent={4} color="error">
-                                    <ShoppingCartIcon />
-                                </Badge>
-                            </IconButton>
+                            <CartWidget></CartWidget>
                             {/* <Tooltip title="Open settings"> // Avatar Icon disable for this delivery
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
