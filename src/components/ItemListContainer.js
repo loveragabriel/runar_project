@@ -46,8 +46,8 @@ export const ItemListContainer = (props) => {
     });
   };
 
-  const cardDetails=()=>{
-    // alert('Ir a detalle del producto')
+  const addToCart=()=>{
+    alert('Ir a detalle del producto')
   }
 
   return (
@@ -56,7 +56,7 @@ export const ItemListContainer = (props) => {
     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
     {loading ? ( // check loading status and render progress component if true
                 <CircularProgress sx={{marginTop:'10em'}} />
-            ) : <ItemList productList={productList} likedProducts={likedProducts} handleLike={handleLike} />}
+            ) : <ItemList productList={productList} likedProducts={likedProducts} handleLike={handleLike} addToCart={addToCart} />}
     </div>
     </>
    

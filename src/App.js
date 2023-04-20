@@ -7,17 +7,16 @@ import { Indumentaria } from './pages/Indumentaria';
 import { ItemDetailContainer } from './components/ItemDetailContainer';
 import { Error404 } from './components/Error404';
 import NavBar from './components/NavBar';
-import { CategoryContainer } from './components/CategoryContainer';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 const cartContext = createContext({ countCart: 20 });
 
 function App() {
   const CartContextProvider = cartContext.Provider
-  const cart = []
+  const [cart, setCart] = useState([0])
   return (
     <BrowserRouter basename='/runar'>
-      <CartContextProvider value={{ cart: cart }}>
+      <CartContextProvider value={{ cart: cart, setCart:setCart }}>
         <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<Catalogo />} />
@@ -26,7 +25,7 @@ function App() {
           <Route path='/Zapatillas' element={<Zapatillas />} />
           <Route path='/Indumentaria' element={<Indumentaria />} />
           <Route path='/ItemDetailContainer/:idItem' element={<ItemDetailContainer />} />
-          <Route path='/CategoryContainer/:itemCategory' element={<CategoryContainer />} />
+          <Route path='/Category/:itemCategory' element={<Accesorios/>} />
           <Route path='/*' element={<Error404 />} />
         </Routes>
       </CartContextProvider>
