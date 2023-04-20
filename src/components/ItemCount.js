@@ -2,7 +2,7 @@ import React from 'react'
 import { BtnComponent } from './BtnComponent'
 import { useState } from 'react'
 
-export const ItemCount = (props) => {
+export const ItemCount = ({addToCart}) => {
   const [count, setCount] = useState(1)
 
   const addProduct = () => {
@@ -19,10 +19,11 @@ export const ItemCount = (props) => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
-      <BtnComponent onClick={removeProduct}>-</BtnComponent>
-      <BtnComponent color='orange'>{count}</BtnComponent>
-      <BtnComponent onClick={addProduct}>+</BtnComponent>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <BtnComponent onClick={removeProduct} style={{ fontSize: '1.5em' }}>-</BtnComponent>
+      <BtnComponent color='orange' style={{ fontSize: '1.5em', margin: '0 1em' }}>{count}</BtnComponent>
+      <BtnComponent onClick={addProduct} style={{ fontSize: '1.5em' }}>+</BtnComponent>
+      <BtnComponent onClick={addToCart} style={{ fontSize: '1.2em', marginLeft: '1em' }}>Agregar</BtnComponent>
     </div>
   )
 }

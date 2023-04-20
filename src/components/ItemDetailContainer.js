@@ -1,15 +1,15 @@
 import products from '../modules/lists';
 import React, { useState, useEffect } from 'react';
-import { Paper, Typography, Box } from '@mui/material';
+import { Paper, Typography, Box, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 import { CircularProgress } from '@mui/material';
-import { BtnComponent } from './BtnComponent';
-
+import { useContext } from 'react';
+import { cartContext } from '../App';
 
 const hoverCard = {
     padding: '1em',
-    margin: '10em',
+    margin: '1em',
     cursor: 'pointer',
     transition: 'transform 0.2s',
     '&:hover': {
@@ -33,6 +33,7 @@ export const ItemDetailContainer = () => {
     let { idItem } = useParams();
     const [loading, setLoading] = useState(true); // initialize loading state
 
+    const {cart} = useContext(cartContext)
 
     useEffect(() => {
         getItemsById(idItem).then((results) => {
@@ -43,23 +44,30 @@ export const ItemDetailContainer = () => {
         });
     }, [idItem]);
 
-    return (
-        <div >
+    function addToCart(count){
+    }
 
+    return (
+        <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="120vh"
+        >
             {loading ? ( // check loading status and render progress component if true
-                <CircularProgress sx={{ margin: '10em' }} />
-            ) : <Paper elevation={5} sx={hoverCard}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography variant='h5'>{product.title}</Typography>
-                </Box>
-                <img src={product.img} alt='img' style={{ width: '250px' }} />
-                <Typography variant='h6'>{product.description}</Typography>
-                <Typography variant='p'>{product.category}</Typography>
-                <Typography variant='h6'>$ {product.price}</Typography>
-                <ItemCount></ItemCount>
-                <BtnComponent>Agregar</BtnComponent>
-            </Paper>
-            }
-        </div>
+                <CircularProgress sx={{ margin: '1em' }} />
+            ) : (
+                <Paper elevation={5} sx={hoverCard} style={{ width: '100%', maxWidth: '350px' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
+                        <Typography variant='h5'>{product.title}</Typography>
+                    </Box>
+                    <img src={product.img} alt='img' style={{ width: '100%', marginBottom: '1em' }} />
+                    <Typography variant='h6' style={{ marginBottom: '1em' }}>{product.description}</Typography>
+                    <Typography variant='p' style={{ marginBottom: '1em' }}>{product.category}</Typography>
+                    <Typography variant='h6' style={{ marginBottom: '1em' }}>$ {product.price}</Typography>
+                    <ItemCount onAdd={addToCart} />
+                </Paper>
+            )}
+        </Box>
     )
 }

@@ -25,7 +25,7 @@ const linkStyle = {
     },
 };
 
-const pages = ['Catalogo', 'Novedades', 'Ofertas'];
+const pages = ['Accesorios', 'Indumentaria', 'Zapatillas'];
 const settings = ['Perfil', 'Cuenta', 'Dashboard', 'Salir'];
 
 function NavBar() {

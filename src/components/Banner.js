@@ -1,19 +1,22 @@
-import { Typography } from '@mui/material'
-import React from 'react'
+import { Typography } from '@mui/material';
+import React from 'react';
 
-export const Banner = (props) => {
+export const Banner = ({ src }) => {
+  const h3Style = {
+    position: 'absolute',
+    top: '20%',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    color: 'black',
+    zIndex: 1,
+  };
 
-  const h3Style= {
-    position:'absolute',
-    top:'15vh',
-    left:'20vw',
-    color:'black'
-  }
   return (
-    <div style={{marginTop: '12vh'}}>
-        <img src={props.src} width='100%' height='10%' alt='banner'/>
-        <Typography variant='h3' style={h3Style}>Productos</Typography>
+    <div style={{ position: 'relative', height: '30vh', overflow: 'hidden', marginTop:'5vh'  }}>
+      <img src={src} alt="banner" style={{ width: '100%', height: 'auto' }} />
+      <Typography variant="h3" style={h3Style}>
+        Productos
+      </Typography>
     </div>
-
-  )
-}
+  );
+};
