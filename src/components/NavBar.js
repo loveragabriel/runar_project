@@ -62,11 +62,9 @@ function NavBar() {
             <AppBar position="fixed" color='primary'>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            <Box variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
-                                <IconWhite />
-                            </Box>
-                        </Link>
+                            <Link to="/"  variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                                <IconWhite  />
+                            </Link>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
@@ -98,16 +96,14 @@ function NavBar() {
                             >
                                 {pages.map((page) => (
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Link style={linkStyle} to={`/${page}`}>
+                                        <Link style={linkStyle} to={`Categories/${page}`}>
                                             <Typography textAlign="center">{page}</Typography>
                                         </Link>
                                     </MenuItem>
                                 ))}
                             </Menu>
                         </Box>
-                        <Box sx={{ display: { xs: 'flex', md: 'none' }, with: '1em', height: '1.5em' }} >
-
-                        </Box>
+                 
                         <Box
                             variant="h5"
                             component="a"
@@ -123,14 +119,14 @@ function NavBar() {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Link to="/" style={{ textDecoration: 'none' }}>
-                                <IconWhite />
-                            </Link>
+                            <Box >
+                                <IconWhite to="/" style={{ textDecoration: 'none' }} />
+                            </Box>
 
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
-                                <Link to={`/${page.toLowerCase()}`} key={page} style={{ textDecoration: 'none' }}>
+                                <Link to={`/Categories/${page}`} key={page} style={{ textDecoration: 'none' }}>
                                     <Button
                                         onClick={handleCloseNavMenu}
                                         sx={{ my: 2, color: 'white', display: 'block' }}

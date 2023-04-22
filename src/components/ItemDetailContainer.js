@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 import { CircularProgress } from '@mui/material';
 import { useContext } from 'react';
-import { cartContext } from '../App';
-
+import { cartContext } from '../context/cartContext';
 const hoverCard = {
     padding: '1em',
     margin: '1em',

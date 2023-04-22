@@ -3,8 +3,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import { Badge } from '@mui/material';
 import { useContext } from 'react';
-import { cartContext } from '../App';
-
+import { cartContext } from '../context/cartContext';
 
 
 
