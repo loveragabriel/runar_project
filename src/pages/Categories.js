@@ -3,9 +3,12 @@ import { Paper, Typography, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { ItemCount } from '../components/ItemCount';
 import { CircularProgress } from '@mui/material';
-import { useContext } from 'react';
-import { cartContext } from '../context/cartContext';
+import { BtnComponent } from '../components/BtnComponent';
 import  products  from '../modules/lists';
+import { useCartContext } from '../context/cartContext';
+import { Link } from 'react-router-dom';
+
+
 
 
 const hoverCard = {
@@ -33,7 +36,7 @@ export const Categories = () => {
   const { itemCategory } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true); // initialize loading state
-  const { addToCart } = useContext(cartContext);
+  const { addToCart } = useCartContext;
 
   useEffect(() => {
     setLoading(true);
@@ -55,7 +58,6 @@ export const Categories = () => {
       ) : (
         product.map((categoryProduct) => (
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
-
           <Paper key={categoryProduct.id} elevation={5} sx={hoverCard} style={{ width: '100%', maxWidth: '350px' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
               <Typography variant='h5'>{categoryProduct.title}</Typography>
@@ -64,6 +66,9 @@ export const Categories = () => {
             <Typography variant='h6' style={{ marginBottom: '1em' }}>{categoryProduct.description}</Typography>
             <Typography variant='p' style={{ marginBottom: '1em' }}>{categoryProduct.category}</Typography>
             <Typography variant='h6' style={{ marginBottom: '1em' }}>$ {categoryProduct.price}</Typography>
+            <Link to={`/ItemDetailContainer/${categoryProduct.id}`}>
+            <BtnComponent>Detalle</BtnComponent>
+            </Link>
             <ItemCount onAdd={() => addToCart(categoryProduct)} />
           </Paper>
           </div>

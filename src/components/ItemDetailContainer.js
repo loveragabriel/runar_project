@@ -4,8 +4,8 @@ import { Paper, Typography, Box, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 import { CircularProgress } from '@mui/material';
-import { useContext } from 'react';
-import { cartContext } from '../context/cartContext';
+import { useCartContext } from '../context/cartContext';
+
 const hoverCard = {
     padding: '1em',
     margin: '1em',
@@ -28,12 +28,11 @@ function getItemsById(id) {
 }
 
 export const ItemDetailContainer = () => {
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
     let { idItem } = useParams();
     const [loading, setLoading] = useState(true); // initialize loading state
 
-    const {cart} = useContext(cartContext)
-
+    const {setCart } =useCartContext(); 
     useEffect(() => {
         getItemsById(idItem).then((results) => {
             if (results.length > 0) {
@@ -43,8 +42,15 @@ export const ItemDetailContainer = () => {
         });
     }, [idItem]);
 
-    function addToCart(count){
-    }
+
+    function onAddToCart(count) {
+        setCart(count)
+        console.log("agreado al carrito!");
+      }
+
+//       const countInCart = getCountInCart(product.id);
+//   console.log(countInCart);
+
 
     return (
         <Box
@@ -64,8 +70,10 @@ export const ItemDetailContainer = () => {
                     <Typography variant='h6' style={{ marginBottom: '1em' }}>{product.description}</Typography>
                     <Typography variant='p' style={{ marginBottom: '1em' }}>{product.category}</Typography>
                     <Typography variant='h6' style={{ marginBottom: '1em' }}>$ {product.price}</Typography>
-                    <ItemCount onAdd={addToCart} />
-                </Paper>
+                    <ItemCount
+        
+        onAddToCart={onAddToCart}
+      />                    </Paper>
             )}
         </Box>
     )

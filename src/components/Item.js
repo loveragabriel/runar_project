@@ -45,7 +45,7 @@ export const Item = ({ product, likedProducts, handleLike }) => {
           <img src={product.img} alt='img' style={imgStyle} />
         </div>
         <Typography variant='h6'>{product.description}</Typography>
-        <Link to={`/category/${product.category}`}>
+        <Link to={`/categories/${product.category}`}>
         <Typography variant='h6'>{product.category}</Typography>
         </Link>
         <Typography variant='h6'>$ {product.price}</Typography>

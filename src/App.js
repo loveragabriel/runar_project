@@ -5,14 +5,13 @@ import { Categories } from './pages/Categories';
 import { ItemDetailContainer } from './components/ItemDetailContainer';
 import { Error404 } from './components/Error404';
 import NavBar from './components/NavBar';
-import { ContextProvider } from './context/cartContext';
-
+import { ContextCartProvider } from './context/cartContext';
 
 function App() {
   
   return (
     <BrowserRouter basename='/runar'>
-      <ContextProvider >
+      <ContextCartProvider >
         <NavBar></NavBar>
         <Routes>
           <Route path='/' element={<Catalogo />} />
@@ -21,7 +20,7 @@ function App() {
           <Route path='/Categories/:itemCategory' element={<Categories/>} />
           <Route path='/*' element={<Error404 />} />
         </Routes>
-      </ContextProvider>
+      </ContextCartProvider>
     </BrowserRouter>
   );
 }
