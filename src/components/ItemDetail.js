@@ -11,21 +11,18 @@ import { Link } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 import { BtnComponent } from './BtnComponent';
 
-
-
 const imgContainer = {
-  display: 'flex',
-  justifyContent: 'center',
-  marginBottom: '1em',
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '1em',
 }
 
 const imgStyle = {
-  maxWidth: '100%',
-  height: 'auto',
-  width: '250px',
-  maxHeight: '250px',
+    maxWidth: '100%',
+    height: 'auto',
+    width: '250px',
+    maxHeight: '250px',
 }
-
 
 const hoverCard = {
     padding: '1em',
@@ -53,7 +50,7 @@ export const ItemDetail = () => {
     let { idItem } = useParams();
     const [loading, setLoading] = useState(true); // initialize loading state
 
-    const {cart} = useContext(cartContext)
+    const { cart } = useContext(cartContext)
 
     useEffect(() => {
         getItemsById(idItem).then((results) => {
@@ -64,7 +61,7 @@ export const ItemDetail = () => {
         });
     }, [idItem]);
 
-    function addToCart(count){
+    function addToCart(count) {
     }
 
     return (
@@ -78,25 +75,25 @@ export const ItemDetail = () => {
                 <CircularProgress sx={{ margin: '1em' }} />
             ) : (
                 <Paper elevation={5} sx={hoverCard}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant='h5'>
-                    <Link to={`/ItemDetailContainer/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{product.title}</Link>
-                  </Typography>          <IconButton onClick={() => handleLike(product.id)}>
-                    {isProductLiked ? <Favorite color="primary" /> : <FavoriteBorder color="action" />}
-                  </IconButton>
-                </Box>
-                <div style={imgContainer}>
-                  <img src={product.img} alt='img' style={imgStyle} />
-                </div>
-                <Typography variant='h6'>{product.description}</Typography>
-                <Link to={`/category/${product.category}`}>
-                <Typography variant='h6'>{product.category}</Typography>
-                </Link>
-                <Typography variant='h6'>$ {product.price}</Typography>
-                <Link to={`/ItemDetailContainer/${product.id}`}>
-                    <BtnComponent>Detalle</BtnComponent>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant='h5'>
+                            <Link to={`/ItemDetailContainer/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{product.title}</Link>
+                        </Typography>          <IconButton onClick={() => handleLike(product.id)}>
+                            {isProductLiked ? <Favorite color="primary" /> : <FavoriteBorder color="action" />}
+                        </IconButton>
+                    </Box>
+                    <div style={imgContainer}>
+                        <img src={product.img} alt='img' style={imgStyle} />
+                    </div>
+                    <Typography variant='h6'>{product.description}</Typography>
+                    <Link to={`/category/${product.category}`}>
+                        <Typography variant='h6'>{product.category}</Typography>
                     </Link>
-             </Paper>
+                    <Typography variant='h6'>$ {product.price}</Typography>
+                    <Link to={`/ItemDetailContainer/${product.id}`}>
+                        <BtnComponent>Detalle</BtnComponent>
+                    </Link>
+                </Paper>
             )}
         </Box>
     )

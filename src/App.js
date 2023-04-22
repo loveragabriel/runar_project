@@ -5,7 +5,10 @@ import { Categories } from './pages/Categories';
 import { ItemDetailContainer } from './components/ItemDetailContainer';
 import { Error404 } from './components/Error404';
 import NavBar from './components/NavBar';
+import ShoppingCart from './pages/ShoppingCart';
 import { ContextCartProvider } from './context/cartContext';
+
+
 
 function App() {
   
@@ -19,6 +22,7 @@ function App() {
           <Route path='/ItemDetailContainer/:idItem' element={<ItemDetailContainer />} />
           <Route path='/Categories/:itemCategory' element={<Categories/>} />
           <Route path='/*' element={<Error404 />} />
+          <Route path='/ShoppingCart' element={<ShoppingCart/>}/>
         </Routes>
       </ContextCartProvider>
     </BrowserRouter>

@@ -11,7 +11,7 @@ export const ItemList = (props) => {
 
   return (
     <div style={listStyle}>
-      {productList.map((product, index) => (
+      {productList && productList.map((product, index) => (
         <Item key={index} product={product} likedProducts={likedProducts} handleLike={handleLike} />
       ))}
     </div>

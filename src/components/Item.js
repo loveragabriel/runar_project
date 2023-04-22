@@ -35,7 +35,7 @@ export const Item = ({ product, likedProducts, handleLike }) => {
     <div>
       <Paper elevation={5} sx={hoverCard}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant='h5'>
+          <Typography variant='h5'>
             <Link to={`/ItemDetailContainer/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{product.title}</Link>
           </Typography>          <IconButton onClick={() => handleLike(product.id)}>
             {isProductLiked ? <Favorite color="primary" /> : <FavoriteBorder color="action" />}
@@ -46,12 +46,12 @@ export const Item = ({ product, likedProducts, handleLike }) => {
         </div>
         <Typography variant='h6'>{product.description}</Typography>
         <Link to={`/categories/${product.category}`}>
-        <Typography variant='h6'>{product.category}</Typography>
+          <Typography variant='h6'>{product.category}</Typography>
         </Link>
         <Typography variant='h6'>$ {product.price}</Typography>
         <Link to={`/ItemDetailContainer/${product.id}`}>
-            <BtnComponent>Detalle</BtnComponent>
-            </Link>
+          <BtnComponent>Detalle</BtnComponent>
+        </Link>
         <ItemCount></ItemCount>
       </Paper>
     </div>

@@ -10,8 +10,6 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { IconWhite } from './IconWhite';
-import { Badge } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { CartWidget } from './CartWidget';
@@ -35,9 +33,6 @@ function NavBar() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    // const handleOpenUserMenu = (event) => { Disable
-    //     setAnchorElUser(event.currentTarget);
-    // };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -47,9 +42,6 @@ function NavBar() {
         setAnchorElUser(null);
     };
 
-    const handleShippingCart = () => {
-        alert('⚠️Próximamente podras ver tus compras aquí \n Working on this 😎')
-    }
     const theme = createTheme({
         palette: {
             primary: {
@@ -62,9 +54,9 @@ function NavBar() {
             <AppBar position="fixed" color='primary'>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                            <Link to="/"  variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
-                                <IconWhite  />
-                            </Link>
+                        <Link to="/" variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                            <IconWhite />
+                        </Link>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
@@ -103,7 +95,7 @@ function NavBar() {
                                 ))}
                             </Menu>
                         </Box>
-                 
+
                         <Box
                             variant="h5"
                             component="a"
@@ -140,11 +132,7 @@ function NavBar() {
                         <Box sx={{ flexGrow: 0 }}>
 
                             <CartWidget></CartWidget>
-                            {/* <Tooltip title="Open settings"> // Avatar Icon disable for this delivery
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip> */}
+        
                             <Menu
                                 sx={{ mt: '45px' }}
                                 id="menu-appbar"
