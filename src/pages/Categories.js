@@ -32,8 +32,7 @@ export const Categories = () => {
   const { itemCategory } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true); // initialize loading state
-  const { setCart } = useCartContext();
-
+  const {addItem} = useCartContext();
 
    useEffect(() => {
     setLoading(true);
@@ -43,10 +42,10 @@ export const Categories = () => {
     });
   }, [itemCategory]);
 
-  function onAddToCart(count) {
-    setCart(count)
-    console.log("agreado al carrito!");
-}
+  function onAddToCart(count, product) {
+    const itemToAdd = Object.assign({}, product, { count });
+    addItem(itemToAdd, count);
+  }
 
   return (
     <Box
@@ -71,10 +70,8 @@ export const Categories = () => {
             <Link to={`/ItemDetailContainer/${categoryProduct.id}`}>
             <BtnComponent>Detalle</BtnComponent>
             </Link>
-            <ItemCount
-
-onAddToCart={onAddToCart}
-/>              </Paper>
+            <ItemCount onAddToCart={(count) => onAddToCart(count, categoryProduct)} />
+         </Paper>
           </div>
         ))
       )}

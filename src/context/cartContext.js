@@ -11,17 +11,29 @@ export const ContextCartProvider = (props) => {
     const [cart, setCart] = useState([]);
     const newCart = useDeepCopy(cart);
 
-    function addItem(product, countFromCounter) {
+    // function addItem(product, countFromCounter) {
+    //     if (isItemInCart(product.id)) {
+    //         const itemIndex = cart.findIndex(
+    //             (itemInCart) => itemInCart.id === product.id
+    //         );
+    //         newCart[itemIndex].count += countFromCounter;
+    //     } else {
+    //         newCart.push({ ...product, count: countFromCounter });
+    //     }
+    //     setCart(newCart);
+    // }
+
+    function addItem(product, countFromCounter, categoryProduct) {
         if (isItemInCart(product.id)) {
-            const itemIndex = cart.findIndex(
-                (itemInCart) => itemInCart.id === product.id
-            );
-            newCart[itemIndex].count += countFromCounter;
+          const itemIndex = cart.findIndex(
+            (itemInCart) => itemInCart.id === product.id
+          );
+          newCart[itemIndex].count += countFromCounter;
         } else {
-            newCart.push({ ...product, count: countFromCounter });
+          newCart.push({ ...product, count: countFromCounter, categoryProduct: categoryProduct });
         }
         setCart(newCart);
-    }
+      }
 
     function removeItem(idToDelete) {
         /*  */
@@ -29,7 +41,7 @@ export const ContextCartProvider = (props) => {
 
     function isItemInCart(id) {
         return cart.some((itemInCart) => itemInCart.id === id);
-    }
+      }
 
     function getCountInCart(id) {
         const item = cart.find((itemInCart) => itemInCart.id === id);
@@ -50,7 +62,8 @@ export const ContextCartProvider = (props) => {
                    getCountInCart,
                     removeItem,
                      getTotalPrice,
-                      setCart }}
+                      setCart, 
+                     }}
         >
             {props.children}
         </CartContext.Provider>

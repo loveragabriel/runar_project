@@ -23,7 +23,7 @@ export const ItemCount = ({onAddToCart}) => {
       <BtnComponent onClick={removeProduct} style={{ fontSize: '1.5em' }}>-</BtnComponent>
       <BtnComponent color='orange' style={{ fontSize: '1.5em', margin: '0 1em' }}>{count}</BtnComponent>
       <BtnComponent onClick={addProduct} style={{ fontSize: '1.5em' }}>+</BtnComponent>
-      <BtnComponent onClick={() => onAddToCart(count)} style={{ fontSize: '1.2em', marginLeft: '1em' }}>Agregar</BtnComponent>
+      <BtnComponent onClick={() => onAddToCart(count)}>Agregar al carrito</BtnComponent>
     </div>
   )
 }

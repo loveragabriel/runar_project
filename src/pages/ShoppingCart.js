@@ -21,11 +21,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import products from '../modules/lists';
-
-
-
-const rows = products;
+import { useCartContext } from '../context/cartContext';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -69,7 +65,7 @@ const headCells = [
     label: 'Precio',
   },
   {
-    id: 'quantity',
+    id: 'count',
     numeric: true,
     disablePadding: false,
     label: 'Cantidad',
@@ -212,6 +208,9 @@ export default function ShoppingCart() {
   const [visibleRows, setVisibleRows] = React.useState(null);
   const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
   const [paddingHeight, setPaddingHeight] = React.useState(0);
+  const { cart} = useCartContext();
+  const rows = cart;
+
 
   React.useEffect(() => {
     let rowsOnMount = stableSort(
@@ -376,7 +375,7 @@ export default function ShoppingCart() {
                         {row.title}
                       </TableCell>
                       <TableCell align="right">{row.price}</TableCell>
-                      <TableCell align="right">{row.quantity}</TableCell>
+                      <TableCell align="right">{row.count}</TableCell>
                       <TableCell align="right">{row.description}</TableCell>
                       <TableCell align="right">{row.category}</TableCell>
                     </TableRow>

@@ -23,7 +23,7 @@ export const ItemDetailContainer = () => {
     let { idItem } = useParams();
     const [loading, setLoading] = useState(true); // initialize loading state
 
-    const { setCart } = useCartContext();
+    const { setCart , addItem} = useCartContext();
     useEffect(() => {
         getSingleItem(idItem).then((results) => {
             if (results) {
@@ -35,13 +35,14 @@ export const ItemDetailContainer = () => {
 
 
     function onAddToCart(count) {
-        setCart(count)
+        addItem(product, count);
         console.log("agreado al carrito!");
-    }
+      }
 
     //       const countInCart = getCountInCart(product.id);
     //   console.log(countInCart);
 
+    console.log(product)
 
     return (
         <Box
@@ -61,10 +62,8 @@ export const ItemDetailContainer = () => {
                     <Typography variant='h6' style={{ marginBottom: '1em' }}>{product.description}</Typography>
                     <Typography variant='p' style={{ marginBottom: '1em' }}>{product.category}</Typography>
                     <Typography variant='h6' style={{ marginBottom: '1em' }}>$ {product.price}</Typography>
-                    <ItemCount
-
-                        onAddToCart={onAddToCart}
-                    />                    </Paper>
+                    <ItemCount onAddToCart={onAddToCart} />
+               </Paper>
             )}
         </Box>
     )
