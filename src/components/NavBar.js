@@ -14,62 +14,66 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { CartWidget } from './CartWidget';
 
-const linkStyle = {
-    textDecoration: 'none',
-    color: 'inherit',
-    '&:hover': {
-        textDecoration: 'none',
-        color: 'inherit',
-    },
-};
 
-const pages = ['Accesorios', 'Indumentaria', 'Zapatillas'];
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#20272F',
+        }
+    },
+});
 
 function NavBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [open, setOpen] = React.useState(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
+        setOpen(true);
     };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
+        setOpen(false);
     };
-   
-    const theme = createTheme({
-        palette: {
-            primary: {
-                main: '#20272F',
-            }
+
+    const pages = ['Accesorios', 'Indumentaria', 'Zapatillas'];
+
+    const linkStyle = {
+        textDecoration: 'none',
+        color: 'inherit',
+        '&:hover': {
+            textDecoration: 'none',
+            color: 'inherit',
         },
-    });
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <AppBar position="fixed" color='primary'>
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters>                 
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <MenuIcon />
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            <Box variant="h1" >
+                    <Toolbar disableGutters>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Link to="/">
                                 <IconWhite />
-                            </Box>
-                        </Link>
+                            </Link>
+                        </Box>
+
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
-                                aria-label="account of current user"
+                                aria-label="menu"
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 onClick={handleOpenNavMenu}
                                 color="inherit"
                             >
-                               
-                                
+                                <MenuIcon />
                             </IconButton>
-                            
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorElNav}
+                                open={open} 
                                 anchorOrigin={{
                                     vertical: 'bottom',
                                     horizontal: 'left',
@@ -79,7 +83,6 @@ function NavBar() {
                                     vertical: 'top',
                                     horizontal: 'left',
                                 }}
-                                open={Boolean(anchorElNav)}
                                 onClose={handleCloseNavMenu}
                                 sx={{
                                     display: { xs: 'block', md: 'none' },
@@ -87,14 +90,16 @@ function NavBar() {
                             >
                                 {pages.map((page) => (
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Link style={linkStyle} to={`/Category/${page}`}>
+                                        <Link style={linkStyle} to={`categories/${page}`}>
                                             <Typography textAlign="center">{page}</Typography>
                                         </Link>
                                     </MenuItem>
                                 ))}
                             </Menu>
                         </Box>
-                        
+
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, with: '1em', height: '1.5em' }} ></Box>
+
                         <Box
                             variant="h5"
                             component="a"
@@ -110,49 +115,26 @@ function NavBar() {
                                 textDecoration: 'none',
                             }}
                         >
-                              <Box variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
-                              <IconWhite to="/" style={{ textDecoration: 'none' }} />
-                              </Box>
-
+                            <Box to="/" >
+                                <IconWhite />
+                            </Box>
                         </Box>
-                        
+
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
-                                <Link  to={`/Category/${page}`} key={page} style={{ textDecoration: 'none' }}>
+                                <Link to={`categories/${page}`} key={page} style={{ textDecoration: 'none' }}>
                                     <Button
                                         onClick={handleCloseNavMenu}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
-                                    >{page}
+                                    >
+                                        {page}
                                     </Button>
                                 </Link>
                             ))}
                         </Box>
 
                         <Box sx={{ flexGrow: 0 }}>
-                           <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
                             <CartWidget></CartWidget>
-
                         </Box>
                     </Toolbar>
                 </Container>
@@ -160,4 +142,5 @@ function NavBar() {
         </ThemeProvider>
     );
 }
+
 export default NavBar;
