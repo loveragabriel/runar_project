@@ -35,21 +35,11 @@ function NavBar() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    // const handleOpenUserMenu = (event) => { Disable
-    //     setAnchorElUser(event.currentTarget);
-    // };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
-    const handleShippingCart = () => {
-        alert('⚠️Próximamente podras ver tus compras aquí \n Working on this 😎')
-    }
     const theme = createTheme({
         palette: {
             primary: {
@@ -62,11 +52,9 @@ function NavBar() {
             <AppBar position="fixed" color='primary'>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            <Box variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                            <Box to="/" variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } ,  textDecoration: 'none'}}>
                                 <IconWhite />
                             </Box>
-                        </Link>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
@@ -163,10 +151,9 @@ function NavBar() {
                                     horizontal: 'right',
                                 }}
                                 open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
                             >
                                 {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                    <MenuItem key={setting}>
                                         <Typography textAlign="center">{setting}</Typography>
                                     </MenuItem>
                                 ))}
