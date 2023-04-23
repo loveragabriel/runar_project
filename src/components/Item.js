@@ -52,7 +52,6 @@ export const Item = ({ product, likedProducts, handleLike }) => {
         <Link to={`/ItemDetailContainer/${product.id}`}>
           <BtnComponent>Detalle</BtnComponent>
         </Link>
-        <ItemCount></ItemCount>
       </Paper>
     </div>
   )

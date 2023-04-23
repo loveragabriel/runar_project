@@ -54,10 +54,15 @@ export const ContextCartProvider = (props) => {
         return item !== undefined ? item.count : 0;
     }
 
-    function getTotalPrice() {
-        let total = 0;
-        return 1900;
-    }
+    
+      const calculateTotalPrice = () => {
+        let totalPrice = 0;
+        cart.forEach((item) => {
+          totalPrice += item.price * item.count;
+        });
+        return totalPrice;
+      };
+
 
     return (
         <CartContext.Provider
@@ -66,7 +71,7 @@ export const ContextCartProvider = (props) => {
                   isItemInCart,
                    getCountInCart,
                    removeItemFromCart,
-                     getTotalPrice,
+                   calculateTotalPrice,
                       setCart, 
                      }}
         >

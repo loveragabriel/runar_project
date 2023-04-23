@@ -3,15 +3,17 @@ import { ItemList } from "./ItemList";
 import { Banner } from './Banner';
 import { CircularProgress } from '@mui/material';
 import { getItemsFirebase } from '../services/firestore';
+import { useCartContext } from '../context/cartContext';
 
 export const ItemListContainer = (props) => {
   const [likedProducts, setLikedProducts] = useState({});
-  const [listProducts, setListProducts] = useState([])
   const [loading, setLoading] = useState(true); // initialize loading state
+  const {addItem} = useCartContext();
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     getItemsFirebase().then((respuesta) => {
-      setListProducts(respuesta);
+      setProduct(respuesta);
       setLoading(false);
     })
   }, []);
@@ -23,9 +25,7 @@ export const ItemListContainer = (props) => {
     });
   };
 
-  const addToCart = () => {
-    alert('Ir a detalle del producto')
-  }
+
 
   return (
     <>
@@ -33,7 +33,8 @@ export const ItemListContainer = (props) => {
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
         {loading ? ( // check loading status and render progress component if true
           <CircularProgress sx={{ marginTop: '10em' }} />
-        ) : <ItemList productList={listProducts} likedProducts={likedProducts} handleLike={handleLike} addToCart={addToCart} />}
+        ) :<ItemList product={product} likedProducts={likedProducts} handleLike={handleLike}/>
+      }
       </div>
     </>
 

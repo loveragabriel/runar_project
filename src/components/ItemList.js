@@ -7,11 +7,11 @@ const listStyle = {
 }
 
 export const ItemList = (props) => {
-  const { productList, likedProducts, handleLike } = props;
+  const { product, likedProducts, handleLike } = props;
 
   return (
     <div style={listStyle}>
-      {productList && productList.map((product, index) => (
+      {product && product.map((product, index) => (
         <Item key={index} product={product} likedProducts={likedProducts} handleLike={handleLike} />
       ))}
     </div>

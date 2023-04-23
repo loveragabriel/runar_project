@@ -18,12 +18,13 @@ export const ItemCount = ({onAddToCart}) => {
     }
   };
 
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <BtnComponent onClick={removeProduct} style={{ fontSize: '1.5em' }}>-</BtnComponent>
       <BtnComponent color='orange' style={{ fontSize: '1.5em', margin: '0 1em' }}>{count}</BtnComponent>
       <BtnComponent onClick={addProduct} style={{ fontSize: '1.5em' }}>+</BtnComponent>
-      <BtnComponent onClick={() => onAddToCart(count)}>Agregar al carrito</BtnComponent>
+      <BtnComponent onClick={() => onAddToCart(count)}>Agregar</BtnComponent>
     </div>
   )
 }

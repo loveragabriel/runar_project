@@ -13,7 +13,7 @@ export const CartWidget = () => {
     
    
     return (
-        <Link  to={`/ShoppingCart`}>
+        <Link  to={`/Shopping`}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit"  >
             <Badge badgeContent={cart.length} color="error">
                 <ShoppingCartIcon />
