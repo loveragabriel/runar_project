@@ -83,6 +83,12 @@ const headCells = [
     disablePadding: false,
     label: 'Categoría',
   },
+  {
+    id: 'totalItem',
+    numeric: true,
+    disablePadding: false,
+    label: 'Total Item',
+  },
 ];
 
 const DEFAULT_ORDER = 'asc';
@@ -217,7 +223,13 @@ export default function ShoppingCart() {
   const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
   const [paddingHeight, setPaddingHeight] = React.useState(0);
   const { cart, removeItemFromCart } = useCartContext();
-  const rows = cart;
+  const rows = cart.map(item => {
+    const totalPrice = item.price * item.count;
+    return {
+      ...item,
+      totalPrice: totalPrice
+    };
+  });
 
 
   React.useEffect(() => {
@@ -393,6 +405,8 @@ export default function ShoppingCart() {
                       <TableCell align="right">{row.count}</TableCell>
                       <TableCell align="right">{row.description}</TableCell>
                       <TableCell align="right">{row.category}</TableCell>
+                      <TableCell align="right">{row.totalPrice}</TableCell>
+
                     </TableRow>
                   );
                 })
@@ -420,7 +434,7 @@ export default function ShoppingCart() {
         />
       </Paper>
       <Typography variant='h5'>
-        Total: $ {rows.reduce((accumulator, current) => accumulator + current.price, 0)}
+        Total: $ {rows.reduce((accumulator, current) => accumulator + current.totalPrice, 0)}
       </Typography>
       <BtnComponent>Finalizar Compra</BtnComponent>
     </Box>
