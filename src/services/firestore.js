@@ -1,4 +1,4 @@
-import { collection, getDocs, getFirestore, doc, getDoc, query, where } from '@firebase/firestore';
+import { collection, getDocs, getFirestore, doc, getDoc, query, where, addDoc } from '@firebase/firestore';
 import { initializeApp } from "firebase/app"; 
 
 // Your web app's Firebase configuration
@@ -56,6 +56,11 @@ export async function getItemsByCategory(categoryItems) {
    return categoryData
   }
 
+  export async function createOrder(order){
+    const collectionOrders = collection(db, 'orders')
+    const response =  await  addDoc(collectionOrders, order); 
+    return (response.id);
+  }
 
 
 // const querySnapshot = await getDocs(q);

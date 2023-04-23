@@ -24,11 +24,9 @@ const linkStyle = {
 };
 
 const pages = ['Accesorios', 'Indumentaria', 'Zapatillas'];
-const settings = ['Perfil', 'Cuenta', 'Dashboard', 'Salir'];
 
 function NavBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -37,11 +35,7 @@ function NavBar() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
+   
     const theme = createTheme({
         palette: {
             primary: {
@@ -53,11 +47,14 @@ function NavBar() {
         <ThemeProvider theme={theme}>
             <AppBar position="fixed" color='primary'>
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <Link to="/" variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
-                            <IconWhite />
-                        </Link>
+                    <Toolbar disableGutters>                 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <MenuIcon />
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            <Box variant="h1" >
+                                <IconWhite />
+                            </Box>
+                        </Link>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -66,8 +63,10 @@ function NavBar() {
                                 onClick={handleOpenNavMenu}
                                 color="inherit"
                             >
-                                <MenuIcon />
+                               
+                                
                             </IconButton>
+                            
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorElNav}
@@ -88,14 +87,14 @@ function NavBar() {
                             >
                                 {pages.map((page) => (
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Link style={linkStyle} to={`Categories/${page}`}>
+                                        <Link style={linkStyle} to={`/Category/${page}`}>
                                             <Typography textAlign="center">{page}</Typography>
                                         </Link>
                                     </MenuItem>
                                 ))}
                             </Menu>
                         </Box>
-
+                        
                         <Box
                             variant="h5"
                             component="a"
@@ -111,29 +110,26 @@ function NavBar() {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Box >
-                                <IconWhite to="/" style={{ textDecoration: 'none' }} />
-                            </Box>
+                              <Box variant="h1" sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>
+                              <IconWhite to="/" style={{ textDecoration: 'none' }} />
+                              </Box>
 
                         </Box>
+                        
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
-                                <Link to={`/Categories/${page}`} key={page} style={{ textDecoration: 'none' }}>
+                                <Link  to={`/Category/${page}`} key={page} style={{ textDecoration: 'none' }}>
                                     <Button
                                         onClick={handleCloseNavMenu}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
-                                    >
-                                        {page}
+                                    >{page}
                                     </Button>
                                 </Link>
                             ))}
                         </Box>
 
                         <Box sx={{ flexGrow: 0 }}>
-
-                            <CartWidget></CartWidget>
-        
-                            <Menu
+                           <Menu
                                 sx={{ mt: '45px' }}
                                 id="menu-appbar"
                                 anchorEl={anchorElUser}
@@ -155,6 +151,8 @@ function NavBar() {
                                     </MenuItem>
                                 ))}
                             </Menu>
+                            <CartWidget></CartWidget>
+
                         </Box>
                     </Toolbar>
                 </Container>
