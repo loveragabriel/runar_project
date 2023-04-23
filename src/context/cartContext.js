@@ -23,29 +23,34 @@ export const ContextCartProvider = (props) => {
     //     setCart(newCart);
     // }
 
-    function addItem(product, countFromCounter, categoryProduct) {
+    function addItem(product, countFromCounter) {
         if (isItemInCart(product.id)) {
           const itemIndex = cart.findIndex(
             (itemInCart) => itemInCart.id === product.id
           );
           newCart[itemIndex].count += countFromCounter;
         } else {
-          newCart.push({ ...product, count: countFromCounter, categoryProduct: categoryProduct });
+          newCart.push({ ...product, count: countFromCounter });
         }
         setCart(newCart);
       }
 
-    function removeItem(idToDelete) {
-        /*  */
-    }
+     
 
     function isItemInCart(id) {
         return cart.some((itemInCart) => itemInCart.id === id);
       }
 
+      function removeItemFromCart(id) {
+        const itemIndex = cart.findIndex((itemInCart) => itemInCart.id === id);
+        if (itemIndex !== -1) {
+          newCart.splice(itemIndex, 1);
+          setCart(newCart);
+        }
+      }
+
     function getCountInCart(id) {
         const item = cart.find((itemInCart) => itemInCart.id === id);
-
         return item !== undefined ? item.count : 0;
     }
 
@@ -60,7 +65,7 @@ export const ContextCartProvider = (props) => {
                  addItem,
                   isItemInCart,
                    getCountInCart,
-                    removeItem,
+                   removeItemFromCart,
                      getTotalPrice,
                       setCart, 
                      }}

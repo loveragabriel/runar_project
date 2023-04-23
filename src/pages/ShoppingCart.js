@@ -22,6 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { useCartContext } from '../context/cartContext';
+import { BtnComponent } from '../components/BtnComponent';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -146,6 +147,11 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
+  const { removeItemFromCart } = useCartContext();
+
+  const handleRemove = (id) => {
+    removeItemFromCart(id);
+  };
 
   return (
     <Toolbar
@@ -180,7 +186,7 @@ function EnhancedTableToolbar(props) {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={() => handleRemove(props.selected)}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -195,6 +201,8 @@ function EnhancedTableToolbar(props) {
   );
 }
 
+
+
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
@@ -204,11 +212,11 @@ export default function ShoppingCart() {
   const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY);
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense, setDense] = React.useState(true);
   const [visibleRows, setVisibleRows] = React.useState(null);
   const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
   const [paddingHeight, setPaddingHeight] = React.useState(0);
-  const { cart} = useCartContext();
+  const { cart, removeItemFromCart } = useCartContext();
   const rows = cart;
 
 
@@ -322,6 +330,11 @@ export default function ShoppingCart() {
 
   const isSelected = (title) => selected.indexOf(title) !== -1;
 
+   
+  const handleRemove = (id) => {
+    removeItemFromCart(id);
+  };
+
   return (
     <Box sx={{ width: '100%', marginTop: '8em' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
@@ -340,6 +353,8 @@ export default function ShoppingCart() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
+
+
             <TableBody>
               {visibleRows
                 ? visibleRows.map((row, index) => {
@@ -404,10 +419,10 @@ export default function ShoppingCart() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
+      <Typography variant='h5'>
+        Total: $ {rows.reduce((accumulator, current) => accumulator + current.price, 0)}
+      </Typography>
+      <BtnComponent>Finalizar Compra</BtnComponent>
     </Box>
   );
 }
