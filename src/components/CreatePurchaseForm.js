@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
-export default function CreatePurchaseForm({onSubmit,onClick}) {
+export default function CreatePurchaseForm({ onSubmit, onClick }) {
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -26,8 +26,6 @@ export default function CreatePurchaseForm({onSubmit,onClick}) {
   const handleClose = () => {
     onClick();
   };
-
-
 
   return (
     <Dialog open >

@@ -9,7 +9,6 @@ import {
   Paper
 } from "@mui/material";
 
-
 import { useCartContext } from "../context/cartContext";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { BtnComponent } from "../components/BtnComponent";
@@ -27,7 +26,7 @@ export default function Shopping(props) {
   const [form, setForm] = useState(false);
   const [formData, setFormData] = useState(null);
 
-  async function handleCheckout(){
+  async function handleCheckout() {
     setForm(true);
   }
 
@@ -37,9 +36,9 @@ export default function Shopping(props) {
 
   function handleFormSubmit(formData) {
     const order = {
-      item: cart, 
-      buyer: {name: formData.name, lastName: formData.lastName, age: formData.age, email: formData.email},
-      total: calculateTotalPrice(), 
+      item: cart,
+      buyer: { name: formData.name, lastName: formData.lastName, age: formData.age, email: formData.email },
+      total: calculateTotalPrice(),
       date: new Date()
     }
     createOrder(order).then((orderId) => {
@@ -53,7 +52,7 @@ export default function Shopping(props) {
     });
   }
 
-  function closeAlert(){
+  function closeAlert() {
     setAlert(false);
     navigate("/");
   }
@@ -103,8 +102,8 @@ export default function Shopping(props) {
       <BtnComponent variant="contained" color="primary" fullWidth onClick={handleCheckout}>
         Finalizar compra
       </BtnComponent>
-      {form?   <CreatePurchaseForm onSubmit={handleFormSubmit} onClick={handleClose} /> : ''}
-      {alert ? <AlertSuccess orderId={orderId}  orderName={formData?.name} closeAlert={closeAlert}/> : ''}
+      {form ? <CreatePurchaseForm onSubmit={handleFormSubmit} onClick={handleClose} /> : ''}
+      {alert ? <AlertSuccess orderId={orderId} orderName={formData?.name} closeAlert={closeAlert} /> : ''}
     </TableContainer>
   );
 }

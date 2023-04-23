@@ -11,69 +11,54 @@ export const ContextCartProvider = (props) => {
     const [cart, setCart] = useState([]);
     const newCart = useDeepCopy(cart);
 
-    // function addItem(product, countFromCounter) {
-    //     if (isItemInCart(product.id)) {
-    //         const itemIndex = cart.findIndex(
-    //             (itemInCart) => itemInCart.id === product.id
-    //         );
-    //         newCart[itemIndex].count += countFromCounter;
-    //     } else {
-    //         newCart.push({ ...product, count: countFromCounter });
-    //     }
-    //     setCart(newCart);
-    // }
-
     function addItem(product, countFromCounter) {
         if (isItemInCart(product.id)) {
-          const itemIndex = cart.findIndex(
-            (itemInCart) => itemInCart.id === product.id
-          );
-          newCart[itemIndex].count += countFromCounter;
+            const itemIndex = cart.findIndex(
+                (itemInCart) => itemInCart.id === product.id
+            );
+            newCart[itemIndex].count += countFromCounter;
         } else {
-          newCart.push({ ...product, count: countFromCounter });
+            newCart.push({ ...product, count: countFromCounter });
         }
         setCart(newCart);
-      }
-
-     
+    }
 
     function isItemInCart(id) {
         return cart.some((itemInCart) => itemInCart.id === id);
-      }
+    }
 
-      function removeItemFromCart(id) {
+    function removeItemFromCart(id) {
         const itemIndex = cart.findIndex((itemInCart) => itemInCart.id === id);
         if (itemIndex !== -1) {
-          newCart.splice(itemIndex, 1);
-          setCart(newCart);
+            newCart.splice(itemIndex, 1);
+            setCart(newCart);
         }
-      }
+    }
 
     function getCountInCart(id) {
         const item = cart.find((itemInCart) => itemInCart.id === id);
         return item !== undefined ? item.count : 0;
     }
 
-    
-      const calculateTotalPrice = () => {
+    const calculateTotalPrice = () => {
         let totalPrice = 0;
         cart.forEach((item) => {
-          totalPrice += item.price * item.count;
+            totalPrice += item.price * item.count;
         });
         return totalPrice;
-      };
-
+    };
 
     return (
         <CartContext.Provider
-            value={{ cart: cart,
-                 addItem,
-                  isItemInCart,
-                   getCountInCart,
-                   removeItemFromCart,
-                   calculateTotalPrice,
-                      setCart, 
-                     }}
+            value={{
+                cart: cart,
+                addItem,
+                isItemInCart,
+                getCountInCart,
+                removeItemFromCart,
+                calculateTotalPrice,
+                setCart,
+            }}
         >
             {props.children}
         </CartContext.Provider>

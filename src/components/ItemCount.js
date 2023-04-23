@@ -2,7 +2,7 @@ import React from 'react'
 import { BtnComponent } from './BtnComponent'
 import { useState } from 'react'
 
-export const ItemCount = ({onAddToCart}) => {
+export const ItemCount = ({ onAddToCart }) => {
   const [count, setCount] = useState(1)
 
   const addProduct = () => {

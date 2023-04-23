@@ -2,7 +2,6 @@ import React from 'react';
 import { Paper, Typography, Box, IconButton } from '@mui/material';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { ItemCount } from './ItemCount';
 import { BtnComponent } from './BtnComponent';
 
 const hoverCard = {

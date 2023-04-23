@@ -18,23 +18,13 @@ const hoverCard = {
   }
 };
 
-// function getItemsById(category) {
-//   const promise = new Promise((resolve) => {
-//     setTimeout(() => {
-//       const results = products.filter((product) => product.category === category);
-//       resolve(results);
-//     }, 1000);
-//   });
-//   return promise;
-// }
-
 export const Categories = () => {
   const { itemCategory } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true); // initialize loading state
-  const {addItem} = useCartContext();
+  const { addItem } = useCartContext();
 
-   useEffect(() => {
+  useEffect(() => {
     setLoading(true);
     getItemsByCategory(itemCategory).then((results) => {
       setProduct(results);
@@ -59,19 +49,19 @@ export const Categories = () => {
       ) : (
         product.map((categoryProduct) => (
           <div key={categoryProduct.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
-          <Paper elevation={5} sx={hoverCard} style={{ width: '100%', maxWidth: '350px' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
-              <Typography variant='h5'>{categoryProduct.title}</Typography>
-            </Box>
-            <img src={categoryProduct.img} alt='img' style={{ width: '100%', marginBottom: '1em' }} />
-            <Typography variant='h6' style={{ marginBottom: '1em' }}>{categoryProduct.description}</Typography>
-            <Typography variant='p' style={{ marginBottom: '1em' }}>{categoryProduct.category}</Typography>
-            <Typography variant='h6' style={{ marginBottom: '1em' }}>$ {categoryProduct.price}</Typography>
-            <Link to={`/ItemDetailContainer/${categoryProduct.id}`}>
-            <BtnComponent>Detalle</BtnComponent>
-            </Link>
-            <ItemCount onAddToCart={(count) => onAddToCart(count, categoryProduct)} />
-         </Paper>
+            <Paper elevation={5} sx={hoverCard} style={{ width: '100%', maxWidth: '350px' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
+                <Typography variant='h5'>{categoryProduct.title}</Typography>
+              </Box>
+              <img src={categoryProduct.img} alt='img' style={{ width: '100%', marginBottom: '1em' }} />
+              <Typography variant='h6' style={{ marginBottom: '1em' }}>{categoryProduct.description}</Typography>
+              <Typography variant='p' style={{ marginBottom: '1em' }}>{categoryProduct.category}</Typography>
+              <Typography variant='h6' style={{ marginBottom: '1em' }}>$ {categoryProduct.price}</Typography>
+              <Link to={`/ItemDetailContainer/${categoryProduct.id}`}>
+                <BtnComponent>Detalle</BtnComponent>
+              </Link>
+              <ItemCount onAddToCart={(count) => onAddToCart(count, categoryProduct)} />
+            </Paper>
           </div>
         ))
       )}
