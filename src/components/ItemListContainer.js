@@ -8,7 +8,6 @@ import { useCartContext } from '../context/cartContext';
 export const ItemListContainer = (props) => {
   const [likedProducts, setLikedProducts] = useState({});
   const [loading, setLoading] = useState(true); // initialize loading state
-  const {addItem} = useCartContext();
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
@@ -24,8 +23,6 @@ export const ItemListContainer = (props) => {
       return { ...prevState, [productId]: !isProductLiked };
     });
   };
-
-
 
   return (
     <>

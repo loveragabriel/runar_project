@@ -23,6 +23,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { useCartContext } from '../context/cartContext';
 import { BtnComponent } from '../components/BtnComponent';
+import { createOrder } from '../services/firestore';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -336,13 +337,18 @@ export default function ShoppingCart() {
     [order, orderBy],
   );
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
-  };
 
   const isSelected = (title) => selected.indexOf(title) !== -1;
 
-   
+  function handleCheout( cart){
+    const order= {
+        item: cart,
+        buyer: { name: 'UserName'},
+        total: getTotalPrice(),
+        date:new Date(),
+    }
+     createOrder(order)
+  }
   const handleRemove = (id) => {
     removeItemFromCart(id);
   };
@@ -436,7 +442,7 @@ export default function ShoppingCart() {
       <Typography variant='h5'>
         Total: $ {rows.reduce((accumulator, current) => accumulator + current.totalPrice, 0)}
       </Typography>
-      <BtnComponent>Finalizar Compra</BtnComponent>
+      <BtnComponent onClick={handleCheout}>Finalizar Compra</BtnComponent>
     </Box>
   );
 }

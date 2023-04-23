@@ -15,10 +15,7 @@ import { BtnComponent } from "../components/BtnComponent";
 
 export default function  Shopping(){
     const { cart, removeItemFromCart, calculateTotalPrice } = useCartContext();
-  
-   
-
-  
+    
     return (
       <TableContainer component={Paper}sx={{marginTop:'8em'}}>
         <Table>
@@ -45,7 +42,7 @@ export default function  Shopping(){
                 <TableCell>
                   <IconButton
                     aria-label="delete"
-                    onClick={() =>  removeItemFromCart(item)}
+                    onClick={() =>  removeItemFromCart(item.id)}
                   >
                     <DeleteIcon />
                   </IconButton>

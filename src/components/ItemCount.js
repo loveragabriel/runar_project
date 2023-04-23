@@ -18,7 +18,6 @@ export const ItemCount = ({onAddToCart}) => {
     }
   };
 
-
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <BtnComponent onClick={removeProduct} style={{ fontSize: '1.5em' }}>-</BtnComponent>

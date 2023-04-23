@@ -16,14 +16,13 @@ const hoverCard = {
     }
 };
 
-
-
 export const ItemDetailContainer = () => {
     const [product, setProduct] = useState([]);
     let { idItem } = useParams();
     const [loading, setLoading] = useState(true); // initialize loading state
-
     const { getCountInCart , addItem} = useCartContext();
+
+
     useEffect(() => {
         getSingleItem(idItem).then((results) => {
             if (results) {
