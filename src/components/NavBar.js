@@ -14,7 +14,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { CartWidget } from './CartWidget';
 
-
 const theme = createTheme({
     palette: {
         primary: {

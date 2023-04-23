@@ -17,40 +17,46 @@ import { createOrder } from "../services/firestore";
 import AlertSuccess from "../components/AlertSuccess";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
-
+import CreatePurchaseForm from "../components/CreatePurchaseForm";
 
 export default function Shopping(props) {
   const { cart, setCart, removeItemFromCart, calculateTotalPrice } = useCartContext();
   const [alert, setAlert] = useState(false)
-  const [orderId, setOrderId] = useState(null); // add this state variable
+  const [orderId, setOrderId] = useState(null);
   const navigate = useNavigate();
-
-
+  const [form, setForm] = useState(false);
+  const [formData, setFormData] = useState(null);
 
   async function handleCheckout(){
+    setForm(true);
+  }
+
+  function handleClose() {
+    setForm(false);
+  }
+
+  function handleFormSubmit(formData) {
     const order = {
       item: cart, 
-      buyer: {name: 'UserName'},
+      buyer: {name: formData.name, lastName: formData.lastName, age: formData.age, email: formData.email},
       total: calculateTotalPrice(), 
       date: new Date()
     }
-    const orderId = await createOrder(order);
-    setOrderId(orderId); // set the orderId in state
-    setAlert(true);
-    setCart([]);
+    createOrder(order).then((orderId) => {
+      setOrderId(orderId);
+      setForm(false);
+      setAlert(true);
+      setCart([]);
+      setFormData(formData);
+    }).catch((error) => {
+      console.error('Error creating order:', error);
+    });
   }
 
-console.log(createOrder);
-
-function closeAlert(){
-  setAlert(false);
-  navigate("/");
-
-
-}
-
-
+  function closeAlert(){
+    setAlert(false);
+    navigate("/");
+  }
 
   return (
     <TableContainer component={Paper} sx={{ marginTop: '8em' }}>
@@ -97,7 +103,8 @@ function closeAlert(){
       <BtnComponent variant="contained" color="primary" fullWidth onClick={handleCheckout}>
         Finalizar compra
       </BtnComponent>
-      {alert ? <AlertSuccess orderId={orderId} closeAlert={closeAlert}/> : ''}
+      {form?   <CreatePurchaseForm onSubmit={handleFormSubmit} onClick={handleClose} /> : ''}
+      {alert ? <AlertSuccess orderId={orderId}  orderName={formData?.name} closeAlert={closeAlert}/> : ''}
     </TableContainer>
   );
 }
