@@ -5,7 +5,7 @@ export const Catalogo = () => {
     return (
         <div>
             <ItemListContainer>
-                <ItemCount/>
+                <ItemCount />
             </ItemListContainer>
         </div>
     )

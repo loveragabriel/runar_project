@@ -1,11 +1,10 @@
-import products from '../modules/lists';
 import React, { useState, useEffect } from 'react';
-import { Paper, Typography, Box, Grid } from '@mui/material';
+import { Paper, Typography, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 import { CircularProgress } from '@mui/material';
-import { useContext } from 'react';
-import { cartContext } from '../App';
+import { useCartContext } from '../context/cartContext';
+import { getSingleItem } from '../services/firestore';
 
 const hoverCard = {
     padding: '1em',
@@ -17,36 +16,28 @@ const hoverCard = {
     }
 };
 
-function getItemsById(id) {
-    const promise = new Promise((resolve) => {
-        setTimeout(() => {
-            const results = products.filter((product) => product.id === Number(id));
-            resolve(results);
-        }, 1000);
-    });
-
-    return promise;
-}
-
 export const ItemDetailContainer = () => {
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
     let { idItem } = useParams();
     const [loading, setLoading] = useState(true); // initialize loading state
-
-    const {cart} = useContext(cartContext)
+    const { getCountInCart, addItem } = useCartContext();
 
     useEffect(() => {
-        getItemsById(idItem).then((results) => {
-            if (results.length > 0) {
-                setProduct(results[0]);
+        getSingleItem(idItem).then((results) => {
+            if (results) {
+                setProduct(results);
                 setLoading(false);
             }
         });
     }, [idItem]);
 
-    function addToCart(count){
+    function onAddToCart(count) {
+        addItem(product, count);
+        console.log("agreado al carrito!");
     }
 
+    const countInCart = getCountInCart(product.id);
+    console.log(countInCart);
     return (
         <Box
             display="flex"
@@ -65,7 +56,7 @@ export const ItemDetailContainer = () => {
                     <Typography variant='h6' style={{ marginBottom: '1em' }}>{product.description}</Typography>
                     <Typography variant='p' style={{ marginBottom: '1em' }}>{product.category}</Typography>
                     <Typography variant='h6' style={{ marginBottom: '1em' }}>$ {product.price}</Typography>
-                    <ItemCount onAdd={addToCart} />
+                    <ItemCount stock={product.stock - countInCart} onAddToCart={onAddToCart} />
                 </Paper>
             )}
         </Box>
