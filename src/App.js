@@ -1,11 +1,9 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Catalogo } from './pages/Catalogo';
 import { Categories } from './pages/Categories';
 import { ItemDetailContainer } from './components/ItemDetailContainer';
 import { Error404 } from './components/Error404';
 import NavBar from './components/NavBar';
-//import ShoppingCart from './pages/ShoppingCart';
 import { ContextCartProvider } from './context/cartContext';
 import Shopping from './pages/Shopping';
 

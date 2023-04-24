@@ -3,7 +3,6 @@ import { ItemList } from "./ItemList";
 import { Banner } from './Banner';
 import { CircularProgress } from '@mui/material';
 import { getItemsFirebase } from '../services/firestore';
-import { useCartContext } from '../context/cartContext';
 
 export const ItemListContainer = (props) => {
   const [likedProducts, setLikedProducts] = useState({});
@@ -12,10 +11,10 @@ export const ItemListContainer = (props) => {
 
   useEffect(() => {
     getItemsFirebase().then((respuesta) => {
-      setProduct(respuesta);
       setLoading(false);
+      setProduct(respuesta);
     })
-  }, []);
+  }, [product]);
 
   const handleLike = (productId) => {
     setLikedProducts((prevState) => {

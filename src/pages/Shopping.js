@@ -17,6 +17,7 @@ import AlertSuccess from "../components/AlertSuccess";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import CreatePurchaseForm from "../components/CreatePurchaseForm";
+import { fontWeight } from "@mui/system";
 
 export default function Shopping(props) {
   const { cart, setCart, removeItemFromCart, calculateTotalPrice } = useCartContext();
@@ -75,11 +76,11 @@ export default function Shopping(props) {
           {cart.map((item) => (
             <TableRow key={item.id}>
               <TableCell>{item.title}</TableCell>
-              <TableCell>{item.price}</TableCell>
+              <TableCell> $ {item.price}</TableCell>
               <TableCell>{item.count}</TableCell>
               <TableCell>{item.description}</TableCell>
               <TableCell>{item.category}</TableCell>
-              <TableCell>{item.price * item.count}</TableCell>
+              <TableCell> $ {item.price * item.count}</TableCell>
               <TableCell>
                 <IconButton
                   aria-label="delete"
@@ -91,10 +92,10 @@ export default function Shopping(props) {
             </TableRow>
           ))}
           <TableRow>
-            <TableCell colSpan={5} align="right">
-              Total Price:
+            <TableCell colSpan={5} align="right" sx={{fontWeight: 'bold'}}>
+              Total de Compra:
             </TableCell>
-            <TableCell>{calculateTotalPrice()}</TableCell>
+            <TableCell> $ {calculateTotalPrice()}</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableBody>
