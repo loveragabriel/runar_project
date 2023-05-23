@@ -15,7 +15,7 @@ function App() {
     <>
     <Authentication></Authentication>
     
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename='/runar_project'>
 
       <ContextCartProvider >
 
