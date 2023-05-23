@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCHQXMW4X9kUbW7pr5Jony8MexOlYTmxDo",
-    authDomain: "runar-7b15f.firebaseapp.com",
-    projectId: "runar-7b15f",
-    storageBucket: "runar-7b15f.appspot.com",
-    messagingSenderId: "1045711106270",
-    appId: "1:1045711106270:web:7de53334bc39fe1fc0524f"
-};
+    apiKey: "AIzaSyAOrMpNWXHDy7uUPPqDi25sL9cQGMeFjFI",
+    authDomain: "runar-project-fb583.firebaseapp.com",
+    projectId: "runar-project-fb583",
+    storageBucket: "runar-project-fb583.appspot.com",
+    messagingSenderId: "1009424323106",
+    appId: "1:1009424323106:web:25b72d7af3398a0325b07b"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
