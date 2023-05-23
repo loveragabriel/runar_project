@@ -17,7 +17,6 @@ import AlertSuccess from "../components/AlertSuccess";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import CreatePurchaseForm from "../components/CreatePurchaseForm";
-import { fontWeight } from "@mui/system";
 
 export default function Shopping(props) {
   const { cart, setCart, removeItemFromCart, calculateTotalPrice } = useCartContext();

@@ -6,15 +6,22 @@ import { Error404 } from './components/Error404';
 import NavBar from './components/NavBar';
 import { ContextCartProvider } from './context/cartContext';
 import Shopping from './pages/Shopping';
+import { Home } from './pages/Home';
+import { Authentication } from './pages/Authentication';
 
 function App() {
   
   return (
+    <>
+    <Authentication></Authentication>
+    
     <BrowserRouter basename='/runar'>
+
       <ContextCartProvider >
+
         <NavBar></NavBar>
         <Routes>
-          <Route path='/' element={<Catalogo />} />
+          <Route path='/' element={<Home/>}/>
           <Route path='/Catalogo' element={<Catalogo />} />
           <Route path='/ItemDetailContainer/:idItem' element={<ItemDetailContainer />} />
           <Route path='/Categories/:itemCategory' element={<Categories/>} />
@@ -23,6 +30,7 @@ function App() {
         </Routes>
       </ContextCartProvider>
     </BrowserRouter>
+    </>
   );
 }
 

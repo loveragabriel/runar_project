@@ -1,7 +1,6 @@
 {
   "name": "runar",
   "version": "0.1.0",
-  "homepage": "https://loveragabriel.github.io/runar",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.10.6",
